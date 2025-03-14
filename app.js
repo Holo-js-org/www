@@ -1,4 +1,4 @@
-import { Holo, Router } from 'https://cdn.jsdelivr.net/npm/holo-js'; // using CDN
+import { Holo, Router } from 'holo-js';
 const app = Holo.init();
 app.setTitle("Holo.js - Effortlessly elegant web development");
 app.registerComponent({
