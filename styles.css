@@ -40,7 +40,7 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .nav-links a {
@@ -49,8 +49,46 @@ body {
   font-size: 0.9rem;
 }
 
+.mobile-menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1rem 0;
+    gap: 1rem;
+    transform: translateY(-150%);
+    transition: transform 0.3s ease;
+    text-align: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .nav-links.active {
+    transform: translateY(0);
+  }
+  
+  .nav-links a {
+    display: block;
+    padding: 0.5rem 0;
+  }
+}
+
 section {
-  padding: 6rem 5%;
+  padding: 5rem 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,6 +98,7 @@ section {
 #hero {
   min-height: 100vh;
   justify-content: center;
+  padding-top: 4rem;
 }
 
 h1 {
@@ -87,6 +126,8 @@ h1 {
   display: flex;
   gap: 1rem;
   margin-bottom: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .button {
@@ -146,6 +187,13 @@ h1 {
   margin-top: 3rem;
 }
 
+@media (max-width: 768px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
 h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
@@ -161,10 +209,101 @@ h2 {
   color: #fff;
   text-align: left;
   overflow-x: auto;
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1.4rem;
+  }
+  
+  .tagline {
+    font-size: 1.2rem;
+  }
+  
+  .code-example {
+    font-size: 12px;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .tagline {
+    font-size: 1rem;
+  }
+  
+  .nav {
+    padding: 0.8rem 5%;
+  }
+  
+  section {
+    padding: 4rem 5% 3rem;
+  }
+  
+  #hero {
+    padding-top: 5rem;
+  }
+  
+  .button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 footer {
   padding: 3rem 5%;
   text-align: center;
   color: var(--text-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #fff;
+    --secondary: #eee;
+    --background: #121212;
+    --text-light: #a1a1a6;
+  }
+  
+  .nav {
+    background-color: rgba(18, 18, 18, 0.8);
+  }
+  
+  .feature-card {
+    background-color: #1e1e1e;
+  }
+  
+  .code-example {
+    background-color: #2e2e2e;
+  }
+  
+  @media (max-width: 768px) {
+    .nav-links {
+      background-color: rgba(18, 18, 18, 0.95);
+    }
+  }
 }

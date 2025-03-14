@@ -1,16 +1,23 @@
 import { Holo, Router } from 'holo-js';
 const app = Holo.init();
 app.setTitle("Holo.js - Effortlessly elegant web development");
+app.state.mobileMenuOpen = false;
+
+app.expose(function toggleMobileMenu() {
+  app.state.mobileMenuOpen = !app.state.mobileMenuOpen;
+});
+
 app.registerComponent({
   name: 'nav-bar',
   render: () => `
     <div class="nav">
       <div class="nav-logo"><a href="/" data-router-link><img src="https://avatars.githubusercontent.com/u/203007511?s=50"></img></a></div>
-      <div class="nav-links">
-        <a href="/features" data-router-link>Features</a>
-        <a href="/examples" data-router-link>Examples</a>
-        <a href="/get-started" data-router-link>Get Started</a>
-        <a href="https://github.com/holo-js-org">GitHub</a>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" style="color: white;">☰</button>
+      <div class="nav-links ${app.state.mobileMenuOpen ? 'active' : ''}">
+        <a href="/features" data-router-link onclick="app.state.mobileMenuOpen = false">Features</a>
+        <a href="/examples" data-router-link onclick="app.state.mobileMenuOpen = false">Examples</a>
+        <a href="/get-started" data-router-link onclick="app.state.mobileMenuOpen = false">Get Started</a>
+        <a href="https://github.com/holo-js-org" onclick="app.state.mobileMenuOpen = false">GitHub</a>
       </div>
     </div>
   `
@@ -189,8 +196,7 @@ router.add("/get-started", `
       <feature-card icon="3️⃣" title="Create" description="const app = Holo.init()"></feature-card>
     </div>
     <div class="buttons" style="margin-top: 3rem;">
-      <a href="https://github.com/your-repo/holo-js" class="button primary">Documentation</a>
-      <a href="https://github.com/your-repo/holo-js/examples" class="button secondary">Examples</a>
+      <a href="https://github.com/holo-js-org/holo/tree/main/test" class="button primary">View a Test</a>
     </div>
   </section>
 `);
