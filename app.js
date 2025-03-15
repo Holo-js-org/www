@@ -1,4 +1,6 @@
 import { Holo, Router } from 'holo-js';
+import 'beercss';
+import 'material-dynamic-colors';
 const app = Holo.init();
 app.setTitle("Holo.js - Effortlessly elegant web development");
 app.state.mobileMenuOpen = false;
@@ -10,16 +12,49 @@ app.expose(function toggleMobileMenu() {
 app.registerComponent({
   name: 'nav-bar',
   render: () => `
-    <div class="nav">
-      <div class="nav-logo"><a href="/" data-router-link><img src="https://avatars.githubusercontent.com/u/203007511?s=50"></img></a></div>
-      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" style="color: white;">☰</button>
-      <div class="nav-links ${app.state.mobileMenuOpen ? 'active' : ''}">
-        <a href="/features" data-router-link onclick="app.state.mobileMenuOpen = false">Features</a>
-        <a href="/examples" data-router-link onclick="app.state.mobileMenuOpen = false">Examples</a>
-        <a href="/get-started" data-router-link onclick="app.state.mobileMenuOpen = false">Get Started</a>
-        <a href="https://github.com/holo-js-org" onclick="app.state.mobileMenuOpen = false">GitHub</a>
-      </div>
-    </div>
+<nav class="m l left">
+  <div class="circle small">
+    <a href="/" ${window.location.hash === "#/" ? "class='active'" : ""} data-router-link>
+      <img src="https://avatars.githubusercontent.com/u/203007511?s=50" alt="Logo">
+    </a>
+  </div>
+  <a href="/features" ${window.location.hash === "#/features" ? "class='active'" : ""} data-router-link>
+    <i>star</i>
+    <span>Features</span>
+  </a>
+  <a href="/examples" ${window.location.hash === "#/examples" ? "class='active'" : ""} data-router-link>
+    <i>code</i>
+    <span>Examples</span>
+  </a>
+  <a href="/get-started" ${window.location.hash === "#/get-started" ? "class='active'" : ""} data-router-link>
+    <i>play_arrow</i>
+    <span>Install</span>
+  </a>
+  <div onclick="${app.state.mode === "dark" ? "app.state.mode = 'light'" : "app.state.mode = 'dark'"}" class="circle small">
+    <i>${app.state.mode === "dark" ? "light_mode" : "dark_mode"}</i>
+  </div>
+</nav>
+<nav class="s bottom">
+    <a href="/" ${window.location.hash === "#/" || window.location.hash === "" ? "class='active'" : ""} data-router-link>
+      <i>home</i>
+      <span>Home</span>
+    </a>
+  <a href="/features" ${window.location.hash === "#/features" ? "class='active'" : ""} data-router-link>
+    <i>star</i>
+    <span>Features</span>
+  </a>
+  <a href="/examples" ${window.location.hash === "#/examples" ? "class='active'" : ""} data-router-link>
+    <i>code</i>
+    <span>Examples</span>
+  </a>
+  <a href="/get-started" ${window.location.hash === "#/get-started" ? "class='active'" : ""} data-router-link>
+    <i>play_arrow</i>
+    <span>Install</span>
+  </a>
+<div onclick="${app.state.mode === "dark" ? "app.state.mode = 'light'" : "app.state.mode = 'dark'"}" class="circle small">
+    <i>${app.state.mode === "dark" ? "light_mode" : "dark_mode"}</i>
+  </div>
+</nav>
   `
 });
 
@@ -37,11 +72,19 @@ app.registerComponent({
     });
     
     return `
-      <div class="feature-card">
-        <div class="feature-icon">${icon}</div>
-        <div class="feature-title">${title}</div>
+      <article class="border round feature-card">
+      <div class="idk">
+      <div class="card">
+      <div class="card-body">
+      <div class="padding">
+        <div class="feature-icon responsive">${icon}</div>
+        <h5>${title}</div>
         <div class="feature-description">${description}</div>
-      </div>
+        </div>
+        </div>
+        </div>
+        </div>
+      </article>
     `;
   }
 });
@@ -202,5 +245,9 @@ router.add("/get-started", `
 `);
 
 app.state.codeSize = "~300";
+app.state.mode = "dark";
 router.init();
 app.exposeAsApp();
+app.subscribeToState('mode', (val) => {
+  document.body.className = val;
+});
