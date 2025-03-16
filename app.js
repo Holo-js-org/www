@@ -1,7 +1,7 @@
 import { Holo, Router } from 'holo-js';
 import 'beercss';
 import 'material-dynamic-colors';
-const app = Holo.init();
+const app = Holo.init(false); // force debug mode, to try DevTools :)
 app.setTitle("Holo.js - Effortlessly elegant web development");
 app.state.mobileMenuOpen = false;
 
