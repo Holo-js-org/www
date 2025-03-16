@@ -3,12 +3,6 @@ import 'beercss';
 import 'material-dynamic-colors';
 const app = Holo.init(false); // force debug mode, to try DevTools :)
 app.setTitle("Holo.js - Effortlessly elegant web development");
-app.state.mobileMenuOpen = false;
-
-app.expose(function toggleMobileMenu() {
-  app.state.mobileMenuOpen = !app.state.mobileMenuOpen;
-});
-
 app.registerComponent({
   name: 'nav-bar',
   render: () => `
