@@ -112,7 +112,12 @@ body.light {
 
 body {
   color: var(--primary);
-  background-color: var(--background);
+  /* background-color: var(--background); */                  /* old */
+  background-image: url("./bg.png");
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+  background-position: center;
   line-height: 1.5;
 }
 
