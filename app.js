@@ -24,12 +24,9 @@ app.registerComponent({
     <i>play_arrow</i>
     <span>Install</span>
   </a>
-  <!-- OLD -->
-  <!--
   <div onclick="${app.state.mode === "dark" ? "app.state.mode = 'light'" : "app.state.mode = 'dark'"}" class="circle small">
     <i>${app.state.mode === "dark" ? "light_mode" : "dark_mode"}</i>
   </div>
-  -->
 </nav>
 <nav class="s bottom">
     <a href="/" ${window.location.hash === "#/" || window.location.hash === "" ? "class='active'" : ""} data-router-link>
@@ -48,12 +45,9 @@ app.registerComponent({
     <i>play_arrow</i>
     <span>Install</span>
   </a>
-  <!-- OLD -->
-  <!--
 <div onclick="${app.state.mode === "dark" ? "app.state.mode = 'light'" : "app.state.mode = 'dark'"}" class="circle small">
     <i>${app.state.mode === "dark" ? "light_mode" : "dark_mode"}</i>
   </div>
-  -->
 </nav>
   `
 });
